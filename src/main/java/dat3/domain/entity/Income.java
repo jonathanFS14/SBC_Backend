@@ -22,5 +22,10 @@ public class Income {
     private String type;
     private int price;
 
+    public Income(Budget budget, String type, int price) {
+        this.budget = budget;
+        this.type = type;
+        this.price = price;
+    }
 
 }

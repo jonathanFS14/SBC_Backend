@@ -13,10 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "USER_TYPE")
-public class Student extends UserWithRoles{
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "USER_TYPE")
+public class Student /*extends UserWithRoles*/{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private String street;
@@ -27,9 +32,11 @@ public class Student extends UserWithRoles{
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Budget> budgets;
 
-    public Student(String username, String password, String email, String firstName,
+    public Student(String username, String password, /*String email,*/ String firstName,
                   String lastName, String street, String city, String zip, String phoneNumber) {
-        super(username, password, email);
+        //super(username, password, email);
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;

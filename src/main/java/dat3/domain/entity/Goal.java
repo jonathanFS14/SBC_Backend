@@ -23,4 +23,11 @@ public class Goal {
     private int saving;
     private int investment;
 
+    public Goal(Budget budget, String type, int saving, int investment) {
+        this.budget = budget;
+        this.type = type;
+        this.saving = saving;
+        this.investment = investment;
+    }
+
 }
