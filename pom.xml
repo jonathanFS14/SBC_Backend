@@ -13,13 +13,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <!--Often a reversed company domain name, here you could use something like below -->
-    <groupId>kea.sem3.rename_me</groupId>
+    <groupId>kea.istanbul</groupId>
     <!-- The artifactId is the base package name used in the project -->
-    <artifactId>dat3.renameme</artifactId>
+    <artifactId>dat.istanbul</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Any name you like, that makes sense for the project</name>
+    <name>Student Budget Calculator</name>
     <description>
-        Add a description for your project there
+        Budget Calculator aimed for students to calculate their budget and expenses
     </description>
     <properties>
         <java.version>17</java.version>
