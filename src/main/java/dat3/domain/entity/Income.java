@@ -1,5 +1,4 @@
 package dat3.domain.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-
 @Entity
 public class Income {
 
@@ -20,12 +18,18 @@ public class Income {
     @ManyToOne()
     private Budget budget;
     private String type;
-    private int price;
+    private int amount;
 
-    public Income(Budget budget, String type, int price) {
+    public Income(Budget budget, String type, int amount) {
         this.budget = budget;
         this.type = type;
-        this.price = price;
+        this.amount = amount;
     }
 
+    public Income(int id, Budget budget, String type, int amount) {
+        this.id = id;
+        this.budget = budget;
+        this.type = type;
+        this.amount = amount;
+    }
 }

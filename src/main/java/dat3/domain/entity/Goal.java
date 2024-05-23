@@ -1,5 +1,4 @@
 package dat3.domain.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-
 @Entity
 public class Goal {
 
@@ -18,16 +16,20 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne()
-    private Budget budget;
+    private Student student;
     private String type;
-    private int saving;
-    private int investment;
+    private int amountPercentage;
 
-    public Goal(Budget budget, String type, int saving, int investment) {
-        this.budget = budget;
+    public Goal(Student student, String type, int amountPercentage) {
+        this.student = student;
         this.type = type;
-        this.saving = saving;
-        this.investment = investment;
+        this.amountPercentage = amountPercentage;
     }
 
+    public Goal(int id, Student student, String type, int amountPercentage) {
+        this.id = id;
+        this.student = student;
+        this.type = type;
+        this.amountPercentage = amountPercentage;
+    }
 }

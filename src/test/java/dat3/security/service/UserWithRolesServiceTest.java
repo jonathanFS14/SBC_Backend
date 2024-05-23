@@ -1,5 +1,4 @@
 package dat3.security.service;
-
 import dat3.security.TestUtils;
 import dat3.security.dto.UserWithRolesRequest;
 import dat3.security.dto.UserWithRolesResponse;
@@ -13,17 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 //You can enable/disable these tests in you maven builds via the maven-surefire-plugin, in your pom-file
 @Tag("DisabledSecurityTest")
 @DataJpaTest
 class UserWithRolesServiceTest {
 
   UserWithRolesService userWithRolesService;
-
   @Autowired
   UserWithRolesRepository userWithRolesRepository;
-
   private boolean dataInitialized = false;
 
   @BeforeEach
@@ -35,7 +31,6 @@ class UserWithRolesServiceTest {
       dataInitialized = true;
     }
   }
-
 
   @Test
   void getUserWithRoles() {
@@ -91,5 +86,4 @@ class UserWithRolesServiceTest {
     assertEquals("u5", newUser.getUserName());
     assertEquals("xx@x.dk", newUser.getEmail());
   }
-
 }

@@ -1,6 +1,4 @@
 package dat3.security.api;
-
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dat3.security.TestUtils;
 import dat3.security.dto.LoginRequest;
@@ -22,7 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 //You can enable/disable these tests in you maven builds via the maven-surefire-plugin, in your pom-file
 @Tag("DisabledSecurityTest")
 @SpringBootTest
@@ -36,9 +33,7 @@ public class AuthorizationTest {
   @Autowired
   UserWithRolesRepository userWithRolesRepository;
 
-
   private final ObjectMapper objectMapper = new ObjectMapper();
-
   public static String userJwtToken;
   public static String adminJwtToken;
   public static String user_adminJwtToken;
@@ -69,7 +64,6 @@ public class AuthorizationTest {
     LoginResponse loginResponse = objectMapper.readValue(response.getResponse().getContentAsString(), LoginResponse.class);
     return loginResponse.getToken();
   }
-
 
   @Test
   void testRolesAdmin() throws Exception {

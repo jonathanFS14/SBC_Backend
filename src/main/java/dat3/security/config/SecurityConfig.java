@@ -38,10 +38,8 @@ import javax.crypto.spec.SecretKeySpec;
 @Configuration
 public class SecurityConfig {
 
-  //Remove default value below BEFORE deployment
   @Value("${app.secret-key}")
   private String tokenSecret;
-
   @Autowired
   CorsConfigurationSource corsConfigurationSource;
 

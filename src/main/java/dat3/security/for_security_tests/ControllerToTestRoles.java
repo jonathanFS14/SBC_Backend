@@ -1,5 +1,4 @@
 package dat3.security.for_security_tests;
-
 import dat3.security.service.UserWithRolesService;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,13 +15,11 @@ import java.security.Principal;
 class TestResponse {
     String UserName;
     String message;
-
     public TestResponse(String userName, String message) {
         UserName = userName;
         this.message = message;
     }
 }
-
 /** Controller meant solely to test the authorization of the roles.
  * This controller is only loaded when the "test" profile is active, so it does not interfere with your real controllers
  * */
@@ -32,7 +29,6 @@ class TestResponse {
 public class ControllerToTestRoles {
 
     UserWithRolesService userWithRolesService;
-
     public ControllerToTestRoles(UserWithRolesService userWithRolesService) {
         this.userWithRolesService = userWithRolesService;
     }
