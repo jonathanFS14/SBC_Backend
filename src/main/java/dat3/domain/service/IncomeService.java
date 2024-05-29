@@ -1,4 +1,5 @@
 package dat3.domain.service;
+import dat3.domain.dto.IncomeDTO;
 import dat3.domain.entity.Budget;
 import dat3.domain.entity.Income;
 import dat3.domain.entity.Student;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class IncomeService {
@@ -44,12 +46,15 @@ public class IncomeService {
         return ResponseEntity.ok().body("Expense deleted");
     }
 
-    public List<Income> getIncomesForOneBudget(String studentId) {
+    public List<IncomeDTO> getIncomesForOneBudget(String studentId) {
         LocalDate currentDate = LocalDate.now();
         String month = currentDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         Student student = studentRepository.findById(studentId).orElseThrow();
         Budget budget = budgetRepository.findByStudentAndMonthOfYear(student, month);
-        return incomeRepository.findByBudget(budget);
+        List<Income> incomes = incomeRepository.findByBudget(budget);
+        return incomes.stream()
+                .map(income -> new IncomeDTO(income.getId(), income.getType(), income.getAmount()))
+                .collect(Collectors.toList());
     }
 
 }

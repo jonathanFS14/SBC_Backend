@@ -1,5 +1,7 @@
 package dat3.domain.api;
+import dat3.domain.dto.ExpenseDTO;
 import dat3.domain.entity.Expense;
+import dat3.domain.repository.StudentRepository;
 import dat3.domain.service.ExpenseService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +25,13 @@ public class ExpenseController {
     }
 
     @GetMapping()
-    List<Expense> getExpense(Principal principal) {
+    List<ExpenseDTO> getExpense(Principal principal) {
         return expenseService.getExpensesForOneBudget(principal.getName());
     }
 
-    @DeleteMapping()
-    ResponseEntity<String> deleteExpense(int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteExpense(@PathVariable int id) {
         return expenseService.deleteExpense(id);
     }
+
 }

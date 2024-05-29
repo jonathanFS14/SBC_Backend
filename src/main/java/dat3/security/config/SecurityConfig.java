@@ -61,6 +61,9 @@ public class SecurityConfig {
     
     http.authorizeHttpRequests((authorize) -> authorize
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/auth/login")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/student")).permitAll()
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/expense/{id}")).hasAnyAuthority("ADMIN", "USER")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE, "/api/income/{id}")).hasAnyAuthority("ADMIN", "USER")
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST, "/api/user-with-role")).permitAll() //Clients can create a user for themself
 
             //This is for demo purposes only, and should be removed for a real system

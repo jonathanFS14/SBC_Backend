@@ -15,14 +15,15 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public ResponseEntity<String> createStudent(Student body) {
+    public Student createStudent(Student body) {
         if (studentRepository.existsById(body.getUsername())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists");
         }
-        Student student = new Student(body.getUsername(), body.getPassword(), body.getFirstName(), body.getLastName(), body.getEmail(), body.getPhoneNumber());
+        Student student = new Student(body.getUsername(), "123",
+                body.getEmail(), body.getFirstName(), body.getLastName(),  body.getPhoneNumber());
         student.addRole(Role.USER);
         studentRepository.save(student);
-        return ResponseEntity.ok().body("Student created");
+        return student;
     }
 
     public ResponseEntity<String> updateStudent(Student body, String id) {

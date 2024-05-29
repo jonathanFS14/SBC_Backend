@@ -17,7 +17,7 @@ public class StudentController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<String> addStudent(@RequestBody Student body){
+    Student addStudent(@RequestBody Student body){
         return studentService.createStudent(body);
     }
 

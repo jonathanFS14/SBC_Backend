@@ -1,5 +1,6 @@
 package dat3.domain.api;
 
+import dat3.domain.dto.GoalDTO;
 import dat3.domain.entity.Goal;
 import dat3.domain.service.GoalService;
 import org.springframework.http.MediaType;
@@ -20,8 +21,8 @@ public class GoalController {
     }
 
     @GetMapping()
-    List<Goal> getGoals(Principal principal) {
-        return goalsService.getAllGoalForOneStudent(principal.getName());
+    List<GoalDTO> getGoals(Principal principal) {
+        return goalsService.getGoalsForStudent(principal.getName());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,8 +30,8 @@ public class GoalController {
         return goalsService.createGoal(principal.getName(), body);
     }
 
-    @DeleteMapping()
-    ResponseEntity<String> deleteGoal(int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteGoal(@PathVariable int id) {
         return goalsService.deleteGoal(id);
     }
 

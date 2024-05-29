@@ -1,4 +1,5 @@
 package dat3.domain.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne()
+    @JsonIgnore
     private Student student;
     private String type;
     private int amountPercentage;

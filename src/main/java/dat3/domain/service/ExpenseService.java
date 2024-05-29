@@ -1,4 +1,5 @@
 package dat3.domain.service;
+import dat3.domain.dto.ExpenseDTO;
 import dat3.domain.entity.Budget;
 import dat3.domain.entity.Expense;
 import dat3.domain.entity.Student;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class ExpenseService {
@@ -44,12 +46,15 @@ public class ExpenseService {
         return ResponseEntity.ok().body("Expense deleted");
     }
 
-    public List<Expense> getExpensesForOneBudget(String studentId) {
+    public List<ExpenseDTO> getExpensesForOneBudget(String studentId) {
         LocalDate currentDate = LocalDate.now();
         String month = currentDate.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         Student student = studentRepository.findById(studentId).orElseThrow();
         Budget budget = budgetRepository.findByStudentAndMonthOfYear(student, month);
-        return expenseRepository.findByBudget(budget);
+        List<Expense> expenses = expenseRepository.findByBudget(budget);
+        return expenses.stream()
+                .map(expense -> new ExpenseDTO(expense.getId(), expense.getType(), expense.getAmount()))
+                .collect(Collectors.toList());
     }
 
 }

@@ -1,4 +1,5 @@
 package dat3.domain.api;
+import dat3.domain.dto.IncomeDTO;
 import dat3.domain.entity.Income;
 import dat3.domain.service.IncomeService;
 import org.springframework.http.MediaType;
@@ -23,12 +24,12 @@ public class IncomeController {
     }
 
     @GetMapping()
-    List<Income> getIncome(Principal principal) {
+    List<IncomeDTO> getIncome(Principal principal) {
         return incomeService.getIncomesForOneBudget(principal.getName());
     }
 
-    @DeleteMapping()
-    ResponseEntity<String> deleteIncome(int id) {
+    @DeleteMapping("/{id}")
+    ResponseEntity<String> deleteIncome(@PathVariable int id) {
         return incomeService.deleteIncome(id);
     }
 
